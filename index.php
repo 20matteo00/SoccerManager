@@ -1,17 +1,16 @@
 <?php
-require_once ("helper/config.php");
-require_once ("helper/db.php");
-require_once ("helper/table.php");
+session_start();
+
+require_once("helper/config.php");
+require_once("helper/db.php");
+require_once("helper/table.php");
 
 
 $db = new db(); // Inizializza la connessione al database
 $table = new table($db); // Inizializza la classe table con la connessione al database
-$table->crea_utenti();  // Crea la tabella utenti
-$table->crea_stati(); // Crea la tabella stati
-$table->crea_competizioni(); // Crea la tabella compitizioni
-$table->crea_squadre(); // Crea la tabella squadre
-
-
+if (isset($_GET["page"])) {
+    $page = "page/" . $_GET["page"] . ".php";
+} else { $page = "index.php"; }
 ?>
 
 <html>
@@ -27,9 +26,7 @@ $table->crea_squadre(); // Crea la tabella squadre
 <body>
     <?php
     include_once("layout/navbar.php");
-    ?>
-
-    <?php
+    include_once($page);
     include_once("layout/footer.php");
     ?>
 </body>

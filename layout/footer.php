@@ -11,7 +11,7 @@
             <div class="col-12 col-lg-4">
                 <h5>Link utili</h5>
                 <ul class="list-unstyled">
-                    <?php foreach (Config::$menu as $label => $url): ?>
+                    <?php foreach (Config::$principale as $label => $url): ?>
                         <li><a href="<?= $url ?>" class="text-white text-decoration-none"><?= $label ?></a></li>
                     <?php endforeach; ?>
                 </ul>

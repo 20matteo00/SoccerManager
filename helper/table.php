@@ -7,13 +7,16 @@ class table
     public function __construct($db)
     {
         $this->db = $db;
+        $this->crea_utenti();  // Crea la tabella utenti
+        $this->crea_stati(); // Crea la tabella stati
+        $this->crea_competizioni(); // Crea la tabella compitizioni
+        $this->crea_squadre(); // Crea la tabella squadre
     }
 
     public function crea_utenti()
     {
         $this->db->createTable('utenti', '
-        id INT AUTO_INCREMENT PRIMARY KEY, 
-        username VARCHAR(50) NOT NULL, 
+        username VARCHAR(50) NOT NULL PRIMARY KEY, 
         password VARCHAR(255) NOT NULL, 
         email VARCHAR(100) NOT NULL,
         params JSON,
