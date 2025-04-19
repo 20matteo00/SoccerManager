@@ -10,15 +10,11 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
         <!-- Menu di navigazione principale -->
         <ul class="navbar-nav me-auto m-0">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Stati</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Competizioni</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Squadre</a>
-            </li>
+            <?php foreach (Config::$menu as $label => $url): ?>
+                <li class="nav-item">
+                    <a href="<?= $url ?>" class="nav-link active"><?= $label ?></a>
+                </li>
+            <?php endforeach; ?>
         </ul>
 
         <!-- Sezione destra: auth -->

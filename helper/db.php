@@ -2,17 +2,14 @@
 
 class db
 {
-    private $host = 'localhost';
-    private $dbname = 'soccer_manager';
-    private $username = 'root';
-    private $password = 'Matteo00';
+
     private $pdo;
 
     public function __construct()
     {
         try {
-            $dsn = "mysql:host={$this->host};dbname={$this->dbname};charset=utf8mb4";
-            $this->pdo = new PDO($dsn, $this->username, $this->password, [
+            $dsn = "mysql:host=" . Config::$dbHost . ";dbname=" . Config::$dbName . ";charset=utf8mb4";
+            $this->pdo = new PDO($dsn, Config::$dbUser, Config::$dbPass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]);
         } catch (PDOException $e) {

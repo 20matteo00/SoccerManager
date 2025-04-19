@@ -1,6 +1,7 @@
 <?php
-require_once 'helper/db.php';
-require_once 'helper/table.php';
+require_once ("helper/config.php");
+require_once ("helper/db.php");
+require_once ("helper/table.php");
 
 
 $db = new db(); // Inizializza la connessione al database
@@ -9,6 +10,8 @@ $table->crea_utenti();  // Crea la tabella utenti
 $table->crea_stati(); // Crea la tabella stati
 $table->crea_competizioni(); // Crea la tabella compitizioni
 $table->crea_squadre(); // Crea la tabella squadre
+
+
 ?>
 
 <html>
@@ -20,9 +23,14 @@ $table->crea_squadre(); // Crea la tabella squadre
     include_once("head/script.html");
     ?>
 </head>
+
 <body>
     <?php
     include_once("layout/navbar.php");
+    ?>
+
+    <?php
+    include_once("layout/footer.php");
     ?>
 </body>
 
