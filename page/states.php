@@ -1,11 +1,5 @@
 <?php
 $stati = $db->select("SELECT * FROM stati ORDER BY id");
-
-// Crea una mappa [id => nome] per recuperare facilmente i nomi dei parent
-$stati_mappa = [];
-foreach ($stati as $s) {
-    $stati_mappa[$s['id']] = $s['nome'];
-}
 ?>
 
 <div class="container py-5">
@@ -24,11 +18,7 @@ foreach ($stati as $s) {
                 <tr>
                     <td><?= htmlspecialchars($stato['nome']) ?></td>
                     <td><?= htmlspecialchars($stato['descrizione'] ?? '-') ?></td>
-                    <td>
-                        <?= isset($stato['parent_id']) && isset($stati_mappa[$stato['parent_id']])
-                            ? htmlspecialchars($stati_mappa[$stato['parent_id']])
-                            : '-' ?>
-                    </td>
+                    <td><?= htmlspecialchars($stato['parent_id'] ?? '-') ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

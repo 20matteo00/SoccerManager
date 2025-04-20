@@ -57,6 +57,7 @@ class Language
                 'name' => 'Nome',
                 'description' => 'Descrizione',
                 'parent' => 'Gruppo',
+                'state' => 'Stato',
 
                 /* ERRORI */
                 // ERRORI AUTENTICAZIONE E PROFILO
@@ -109,6 +110,7 @@ class Language
                 'name' => 'Name',
                 'description' => 'Description',
                 'parent' => 'Group',
+                'state' => 'State',
 
                 /* ERRORI */
                 // ERRORI AUTENTICAZIONE E PROFILO                
