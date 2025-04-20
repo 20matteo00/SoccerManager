@@ -13,29 +13,45 @@
             <ul class="navbar-nav mx-auto m-0">
                 <?php foreach (Config::$principale as $label => $url): ?>
                     <li class="nav-item">
-                        <a href="<?= $url ?>" class="nav-link active"><?= $label ?></a>
+                        <a href="<?= $url ?>" class="nav-link active"><?= $lang->getstring($label) ?></a>
                     </li>
                 <?php endforeach; ?>
             </ul>
 
             <!-- Sezione destra: auth -->
             <ul class="navbar-nav m-0">
+
                 <?php if (!isset($_SESSION['user'])) : ?>
                     <!-- Login / Registrati -->
                     <?php foreach (Config::$utentenonloggato as $label => $url): ?>
                         <li class="nav-item">
-                            <a href="<?= $url ?>" class="nav-link active"><?= $label ?></a>
+                            <a href="<?= $url ?>" class="nav-link active"><?= $lang->getstring($label) ?></a>
                         </li>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <!-- Logout / Profilo -->
-                    <?php foreach (Config::getMenuUtenteloggato() as $label => $url): ?>
+                    <?php foreach (Config::getMenuUtenteloggato($lang) as $label => $url): ?>
                         <li class="nav-item">
-                            <a href="<?= $url ?>" class="nav-link active"><?= $label ?></a>
+                            <a href="<?= $url ?>" class="nav-link active"><?= $lang->getstring($label) ?></a>
                         </li>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </ul>
+
+            <!-- Switcher -->
+            <div class="language-switcher ms-3">
+                <form method="get" onchange="this.submit()" style="display: inline;">
+                    <!-- Campo nascosto per mantenere il parametro 'page' -->
+                    <?php if (isset($_GET['page'])): ?>
+                        <input type="hidden" name="page" value="<?= $_GET['page'] ?>">
+                    <?php endif; ?>
+                    <select name="lang">
+                        <option value="it" <?= ($_SESSION['lang'] ?? 'it') === 'it' ? 'selected' : '' ?>>🇮🇹</option>
+                        <option value="en" <?= ($_SESSION['lang'] ?? 'it') === 'en' ? 'selected' : '' ?>>🇬🇧</option>
+                    </select>
+                </form>
+            </div>
+
         </div>
     </div>
 </nav>

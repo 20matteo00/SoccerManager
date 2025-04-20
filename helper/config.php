@@ -6,13 +6,13 @@ class Config {
 
     // Percorsi principali (possono essere usati nei menu o nei router)
     public static array $principale = [
-        'Stati' => '#',
-        'Competizioni' => '#',
-        'Squadre' => '#'
+        'states' => '?page=stati',
+        'competitions' => '#',
+        'teams' => '#'
     ];
     public static array $utentenonloggato = [
-        'Accedi' => '?page=login',
-        'Registrati' => '?page=register'
+        'login' => '?page=login',
+        'register' => '?page=register'
     ];
 
     // Impostazioni del database
@@ -23,15 +23,15 @@ class Config {
 
 
 
-    public static function getBenvenuto(): string {
+    public static function getBenvenuto($lang): string {
         return isset($_SESSION['user']) 
-            ? "Benvenuto " . $_SESSION['user']['username'] : "Benvenuto";
+            ? $lang->getstring("welcome") . " " . $_SESSION['user']['username'] : "welcome";
     }
 
-    public static function getMenuUtenteloggato(): array {
+    public static function getMenuUtenteloggato($lang): array {
         return [
-            'Esci' => '?page=logout',
-            self::getBenvenuto() => '?page=profile'
+            'logout' => '?page=logout',
+            self::getBenvenuto($lang) => '?page=profile'
         ];
     }
     

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Controllo conferma password
     if ($password !== $confirmPassword) {
-        $errore = "Le password non corrispondono!";
+        $errore = $lang->getstring("passwords do not match!");
     } else {
         // Hash solo se le password corrispondono
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         );
 
         if ($esiste) {
-            $errore = "Username o email già in uso!";
+            $errore = $lang->getstring("username or email already in use!");
         } else {
             // Inserisco nuovo utente
             $db->insert(
@@ -44,43 +44,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Registrazione</h2>
-
+<div class="container py-5">
     <?php if ($errore): ?>
         <div class="alert alert-danger"><?= htmlspecialchars($errore) ?></div>
     <?php endif; ?>
-
-    <form method="POST" class="card p-4 shadow-sm">
-        <div class="mb-3">
-            <label for="username">Username</label>
-            <input
-                type="text" id="username" name="username"
-                class="form-control" required
-                value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="m-0 text-center"><?= $lang->getstring("register") ?></h2>
         </div>
-        <div class="mb-3">
-            <label for="email">Email</label>
-            <input
-                type="email" id="email" name="email"
-                class="form-control" required
-                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
-        </div>
-        <div class="mb-3">
-            <label for="password">Password</label>
-            <input
-                type="password" id="password" name="password"
-                class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="confirm_password">Conferma Password</label>
-            <input
-                type="password" id="confirm_password" name="confirm_password"
-                class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Registrati</button>
-        <p class="mt-3 text-center">
-            Hai già un account? <a href="index.php?page=login">Accedi</a>
-        </p>
-    </form>
+        <form method="POST" class="card shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="username"><?= $lang->getstring("username") ?></label>
+                    <input
+                        type="text" id="username" name="username"
+                        class="form-control" required
+                        value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="email"><?= $lang->getstring("email") ?></label>
+                    <input
+                        type="email" id="email" name="email"
+                        class="form-control" required
+                        value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="password"><?= $lang->getstring("password") ?></label>
+                    <input
+                        type="password" id="password" name="password"
+                        class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password"><?= $lang->getstring("confirm password") ?></label>
+                    <input
+                        type="password" id="confirm_password" name="confirm_password"
+                        class="form-control" required>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary"><?= $lang->getstring("register") ?></button>
+                <p class="mt-3">
+                    <?= $lang->getstring("do you already have an account?") ?> <a href="index.php?page=login"><?= $lang->getstring("login") ?></a>
+                </p>
+            </div>
+        </form>
+    </div>
 </div>

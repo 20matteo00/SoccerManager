@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
 
 // Chiave corrente
 $oldUsername = $_SESSION['user']['username'];
-$errors = [];
+$errore = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitizzo input
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         [$username, $oldUsername]
     );
     if (!empty($exists)) {
-        $errors[] = 'Username già in uso!';
+        $errore = $lang->getstring("username already in use!");
     }
 
     // Prelevo l'hash della password corrente
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         [$oldUsername]
     );
     if (empty($rows)) {
-        $errors[] = 'Utente non trovato.';
+        $errore = $lang->getstring("username not found!");
     } else {
         $hashOld = $rows[0]['password'];
     }
@@ -39,15 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Se ho inserito una nuova password, verifiche aggiuntive
     if ($newPassword !== '' || $confirmPassword !== '') {
         if (!password_verify($currentPassword, $hashOld)) {
-            $errors[] = 'Password corrente errata.';
+            $errore = $lang->getstring("incorrect current password!");
         }
         if ($newPassword !== $confirmPassword) {
-            $errors[] = 'Le nuove password non coincidono.';
+            $errore = $lang->getstring("passwords do not match!");
         }
     }
 
     // Se non ci sono errori procedo all’aggiornamento
-    if (empty($errors)) {
+    if (empty($errore)) {
         try {
             // Inizio transazione
             $db->exec('START TRANSACTION');
@@ -80,74 +80,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Aggiorno chiave per ridisegnare il form
             $oldUsername = $username;
-            
+
             header('Location: index.php');
             exit;
         } catch (Exception $e) {
             $db->exec('ROLLBACK');
-            $errors[] = 'Errore durante l\'aggiornamento: ' . $e->getMessage();
+            $errore = $lang->getstring("error while updating") . $e->getMessage();
         }
     }
 }
 ?>
-<div class="container">
-    <h1>Il mio profilo</h1>
 
-    <?php if ($errors): ?>
-        <div class="alert alert-danger">
-            <ul>
-                <?php foreach ($errors as $e): ?>
-                    <li><?= htmlspecialchars($e) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+<div class="container py-5">
+    <?php if ($errore): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($errore) ?></div>
     <?php endif; ?>
-
-    <form action="index.php?page=profile" method="post">
-        <!-- Username -->
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input
-                type="text" id="username" name="username"
-                class="form-control"
-                value="<?= htmlspecialchars($oldUsername) ?>"
-                required>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="m-0 text-center"><?= $lang->getstring("profile") ?></h2>
         </div>
+        <form method="POST" class="card shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="username"><?= $lang->getstring(key: "username") ?></label>
+                    <input
+                        type="text" id="username" name="username"
+                        class="form-control"
+                        value="<?= htmlspecialchars($oldUsername) ?>"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="email"><?= $lang->getstring("email") ?></label>
+                    <input
+                        type="email" id="email" name="email"
+                        class="form-control"
+                        value="<?= htmlspecialchars($_SESSION['user']['email']) ?>"
+                        required>
+                </div>
+                <hr>
+                <h3><?= $lang->getstring("change password") ?></h3>
+                <div class="mb-3">
+                    <label for="current_password"><?= $lang->getstring("current password") ?></label>
+                    <input
+                        type="password" id="current_password"
+                        name="current_password" class="form-control">
+                </div>
 
-        <!-- Email -->
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input
-                type="email" id="email" name="email"
-                class="form-control"
-                value="<?= htmlspecialchars($_SESSION['user']['email']) ?>"
-                required>
-        </div>
+                <div class="mb-3">
+                    <label for="new_password"><?= $lang->getstring("new password") ?></label>
+                    <input
+                        type="password" id="new_password"
+                        name="new_password" class="form-control">
+                </div>
 
-        <hr>
-        <h3>Cambia password</h3>
-
-        <div class="form-group">
-            <label for="current_password">Password corrente</label>
-            <input
-                type="password" id="current_password"
-                name="current_password" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="new_password">Nuova password</label>
-            <input
-                type="password" id="new_password"
-                name="new_password" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="confirm_password">Conferma nuova password</label>
-            <input
-                type="password" id="confirm_password"
-                name="confirm_password" class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Salva modifiche</button>
-    </form>
+                <div class="mb-3">
+                    <label for="confirm_password"><?= $lang->getstring("confirm new password") ?></label>
+                    <input
+                        type="password" id="confirm_password"
+                        name="confirm_password" class="form-control">
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary"><?= $lang->getstring("save") ?></button>
+            </div>
+        </form>
+    </div>
 </div>

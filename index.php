@@ -4,16 +4,20 @@ session_start();
 require_once("helper/config.php");
 require_once("helper/db.php");
 require_once("helper/table.php");
+require_once("helper/language.php");
 
 
-$db = new db(); // Inizializza la connessione al database
-$table = new table($db); // Inizializza la classe table con la connessione al database
-if (isset($_GET["page"])) {
-    $page = "page/" . $_GET["page"] . ".php";
-} else { $page = "index.php"; }
+$db = new Db(); // Inizializza la connessione al database
+$table = new Table($db); // Inizializza la classe table con la connessione al database
+$page = isset($_GET["page"]) ? "page/" . $_GET["page"] . ".php" : "index.php";
+if (isset($_GET['lang'])) {
+    $_SESSION['lang'] = $_GET['lang'];
+}
+$lang = new Language($_SESSION['lang'] ?? 'it');
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="<?= $lang->getLang() ?>">
 
 <head>
     <?php
