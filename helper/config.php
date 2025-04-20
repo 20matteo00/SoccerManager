@@ -6,9 +6,9 @@ class Config {
 
     // Percorsi principali (possono essere usati nei menu o nei router)
     public static array $principale = [
-        'states' => '?page=stati',
-        'competitions' => '#',
-        'teams' => '#'
+        'states' => '?page=states',
+        'competitions' => '?page=competitions',
+        'teams' => '?page=teams',
     ];
     public static array $utentenonloggato = [
         'login' => '?page=login',
