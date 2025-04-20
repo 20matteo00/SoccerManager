@@ -1,0 +1,13 @@
+:root{
+    --primary-color: #4CAF50;
+    --secondary-color: #f44336;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: var(--primary-color);
+    text-decoration: underline;
+}

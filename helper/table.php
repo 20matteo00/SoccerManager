@@ -120,37 +120,6 @@ class Table
         ['nome' => 'UEFA Conference League', 'stato' => 'Europa'], // Europa
         ['nome' => 'Supercoppa UEFA',       'stato' => 'Europa'], // Europa
 
-        // Asia
-        ['nome' => 'AFC Champions League', 'stato' => 'Asia'], // Asia
-        ['nome' => 'Asian Cup',            'stato' => 'Asia'], // Asia
-        ['nome' => 'K-League',             'stato' => 'Corea del Sud'], // Corea del Sud
-        ['nome' => 'J-League',             'stato' => 'Giappone'], // Giappone
-
-        // America del Sud
-        ['nome' => 'Copa Libertadores',   'stato' => 'America del Sud'], // America del Sud
-        ['nome' => 'Copa America',        'stato' => 'America del Sud'], // America del Sud
-        ['nome' => 'Brasileirão',         'stato' => 'Brasile'], // Brasile
-        ['nome' => 'Primera División',    'stato' => 'Argentina'], // Argentina
-        ['nome' => 'Serie A',             'stato' => 'Perù'], // Perù
-        ['nome' => 'Categoría Primera A', 'stato' => 'Colombia'], // Colombia
-
-        // Africa
-        ['nome' => 'Coppa d\'Africa',     'stato' => 'Africa'], // Africa
-        ['nome' => 'Championship of African Nations', 'stato' => 'Africa'], // Africa
-
-        // Oceania
-        ['nome' => 'OFC Champions League', 'stato' => 'Oceania'], // Oceania
-        ['nome' => 'New Zealand Football Championship', 'stato' => 'Nuova Zelanda'], // Nuova Zelanda
-        ['nome' => 'O-League',             'stato' => 'Oceania'], // Oceania
-
-        // Stati Uniti (America del Nord)
-        ['nome' => 'MLS',                 'stato' => 'Stati Uniti'], // Stati Uniti
-        ['nome' => 'US Open Cup',         'stato' => 'Stati Uniti'], // Stati Uniti
-        ['nome' => 'Major League Soccer', 'stato' => 'Stati Uniti'], // Stati Uniti
-        ['nome' => 'Liga MX',             'stato' => 'Messico'], // Messico
-        ['nome' => 'Copa MX',             'stato' => 'Messico'], // Messico
-
-        // Italia
         ['nome' => 'Serie A',             'stato' => 'Italia'],  // Italia
         ['nome' => 'Serie B',             'stato' => 'Italia'],  // Italia
         ['nome' => 'Serie C Girone A',    'stato' => 'Italia'],  // Italia
@@ -158,19 +127,10 @@ class Table
         ['nome' => 'Serie C Girone C',    'stato' => 'Italia'],  // Italia
         ['nome' => 'Coppa Italia',        'stato' => 'Italia'],  // Italia
         ['nome' => 'Supercoppa Italiana', 'stato' => 'Italia'],  // Italia
-        ['nome' => 'Coppa Italia Serie C', 'stato' => 'Italia'],  // Italia
-        ['nome' => 'Primavera',           'stato' => 'Italia'],  // Italia (giovanili)
-        ['nome' => 'Serie D',             'stato' => 'Italia'],  // Italia
-        ['nome' => 'Campionato Nazionale Dilettanti', 'stato' => 'Italia'], // Italia
-        ['nome' => 'Legapro',             'stato' => 'Italia'],  // Italia
-
-        // Francia
         ['nome' => 'Ligue 1',             'stato' => 'Francia'], // Francia
         ['nome' => 'Ligue 2',             'stato' => 'Francia'], // Francia
         ['nome' => 'Coupe de France',     'stato' => 'Francia'], // Francia
         ['nome' => 'Trophée des Champions', 'stato' => 'Francia'], // Francia
-
-        // Inghilterra
         ['nome' => 'Premier League',      'stato' => 'Inghilterra'], // Inghilterra
         ['nome' => 'Championship',        'stato' => 'Inghilterra'], // Inghilterra
         ['nome' => 'League One',          'stato' => 'Inghilterra'], // Inghilterra
@@ -178,56 +138,66 @@ class Table
         ['nome' => 'FA Cup',              'stato' => 'Inghilterra'], // Inghilterra
         ['nome' => 'EFL Cup',             'stato' => 'Inghilterra'], // Inghilterra
         ['nome' => 'Community Shield',    'stato' => 'Inghilterra'], // Inghilterra
-
-        // Spagna
         ['nome' => 'La Liga',             'stato' => 'Spagna'], // Spagna
         ['nome' => 'La Liga 2',           'stato' => 'Spagna'], // Spagna
         ['nome' => 'Copa del Rey',        'stato' => 'Spagna'], // Spagna
         ['nome' => 'Supercopa de España', 'stato' => 'Spagna'], // Spagna
-
-        // Germania
         ['nome' => 'Bundesliga',          'stato' => 'Germania'], // Germania
         ['nome' => '2. Bundesliga',       'stato' => 'Germania'], // Germania
         ['nome' => 'DFB-Pokal',           'stato' => 'Germania'], // Germania
         ['nome' => 'Supercup',            'stato' => 'Germania'], // Germania
-
-        // Portogallo
         ['nome' => 'Primeira Liga',       'stato' => 'Portogallo'], // Portogallo
         ['nome' => 'Taça de Portugal',   'stato' => 'Portogallo'], // Portogallo
         ['nome' => 'Supertaça Cândido de Oliveira', 'stato' => 'Portogallo'], // Portogallo
-
-        // Olanda
         ['nome' => 'Eredivisie',          'stato' => 'Olanda'], // Olanda
         ['nome' => 'KNVB Cup',            'stato' => 'Olanda'], // Olanda
         ['nome' => 'Supercup',            'stato' => 'Olanda'], // Olanda
-
-        // Belgio
         ['nome' => 'Pro League',          'stato' => 'Belgio'], // Belgio
         ['nome' => 'Beker van België',    'stato' => 'Belgio'], // Belgio
-
-        // Croazia
         ['nome' => 'Prva HNL',            'stato' => 'Croazia'], // Croazia
         ['nome' => 'Croatian Cup',        'stato' => 'Croazia'], // Croazia
-
-        // Svezia
         ['nome' => 'Allsvenskan',         'stato' => 'Svezia'], // Svezia
         ['nome' => 'Svenska Cupen',       'stato' => 'Svezia'], // Svezia
-
-        // Polonia
         ['nome' => 'Ekstraklasa',         'stato' => 'Polonia'], // Polonia
         ['nome' => 'Puchar Polski',       'stato' => 'Polonia'], // Polonia
-
-        // Grecia
         ['nome' => 'Super League Greece', 'stato' => 'Grecia'], // Grecia
         ['nome' => 'Greek Cup',           'stato' => 'Grecia'], // Grecia
-
-        // Turchia
         ['nome' => 'Süper Lig',           'stato' => 'Turchia'], // Turchia
         ['nome' => 'Türkiye Kupası',      'stato' => 'Turchia'], // Turchia
-
-        // Ucraina
         ['nome' => 'Ukrainian Premier League', 'stato' => 'Ucraina'], // Ucraina
         ['nome' => 'Ukrainian Cup',           'stato' => 'Ucraina'], // Ucraina
+
+        // ASIA
+        ['nome' => 'AFC Champions League', 'stato' => 'Asia'], // Asia
+        ['nome' => 'Asian Cup',            'stato' => 'Asia'], // Asia
+
+        ['nome' => 'K-League',             'stato' => 'Corea del Sud'], // Corea del Sud
+        ['nome' => 'J-League',             'stato' => 'Giappone'], // Giappone
+
+        // AMERICA DEL SUD
+        ['nome' => 'Copa Libertadores',   'stato' => 'America del Sud'], // America del Sud
+        ['nome' => 'Copa America',        'stato' => 'America del Sud'], // America del Sud
+
+        ['nome' => 'Brasileirão',         'stato' => 'Brasile'], // Brasile
+        ['nome' => 'Primera División',    'stato' => 'Argentina'], // Argentina
+        ['nome' => 'Serie A',             'stato' => 'Perù'], // Perù
+        ['nome' => 'Categoría Primera A', 'stato' => 'Colombia'], // Colombia
+
+        // AMERICA DEL NORD
+        ['nome' => 'MLS',                 'stato' => 'Stati Uniti'], // Stati Uniti
+        ['nome' => 'US Open Cup',         'stato' => 'Stati Uniti'], // Stati Uniti
+        ['nome' => 'Major League Soccer', 'stato' => 'Stati Uniti'], // Stati Uniti
+        ['nome' => 'Liga MX',             'stato' => 'Messico'], // Messico
+        ['nome' => 'Copa MX',             'stato' => 'Messico'], // Messico
+
+        // AFRICA
+        ['nome' => 'Coppa d\'Africa',     'stato' => 'Africa'], // Africa
+        ['nome' => 'Championship of African Nations', 'stato' => 'Africa'], // Africa
+
+        // OCEANIA
+        ['nome' => 'OFC Champions League', 'stato' => 'Oceania'], // Oceania
+
+        ['nome' => 'New Zealand Football Championship', 'stato' => 'Nuova Zelanda'], // Nuova Zelanda
     ];
 
 
@@ -242,37 +212,38 @@ class Table
         ['nome' => 'Torino', 'stato' => 'Italia'],
         ['nome' => 'Fiorentina', 'stato' => 'Italia'],
         ['nome' => 'Genoa', 'stato' => 'Italia'],
-        ['nome' => 'Sampdoria', 'stato' => 'Italia'],
         ['nome' => 'Bologna', 'stato' => 'Italia'],
         ['nome' => 'Cagliari', 'stato' => 'Italia'],
-        ['nome' => 'Sassuolo', 'stato' => 'Italia'],
         ['nome' => 'Empoli', 'stato' => 'Italia'],
-        ['nome' => 'Salernitana', 'stato' => 'Italia'],
         ['nome' => 'Lecce', 'stato' => 'Italia'],
         ['nome' => 'Monza', 'stato' => 'Italia'],
         ['nome' => 'Udinese', 'stato' => 'Italia'],
         ['nome' => 'Verona', 'stato' => 'Italia'],
+        ['nome' => 'Parma', 'stato' => 'Italia'],
+        ['nome' => 'Como', 'stato' => 'Italia'],
+        ['nome' => 'Venezia', 'stato' => 'Italia'],
+
+        ['nome' => 'Sampdoria', 'stato' => 'Italia'],
+        ['nome' => 'Sassuolo', 'stato' => 'Italia'],
+        ['nome' => 'Salernitana', 'stato' => 'Italia'],
         ['nome' => 'Cremonese', 'stato' => 'Italia'],
         ['nome' => 'Frosinone', 'stato' => 'Italia'],
         ['nome' => 'Spezia', 'stato' => 'Italia'],
         ['nome' => 'Bari', 'stato' => 'Italia'],
-        ['nome' => 'Parma', 'stato' => 'Italia'],
         ['nome' => 'Palermo', 'stato' => 'Italia'],
-        ['nome' => 'Catania', 'stato' => 'Italia'],
         ['nome' => 'Brescia', 'stato' => 'Italia'],
-        ['nome' => 'Vicenza', 'stato' => 'Italia'],
-        ['nome' => 'Ascoli', 'stato' => 'Italia'],
-        ['nome' => 'Reggina', 'stato' => 'Italia'],
         ['nome' => 'Cosenza', 'stato' => 'Italia'],
         ['nome' => 'Pisa', 'stato' => 'Italia'],
-        ['nome' => 'Ternana', 'stato' => 'Italia'],
         ['nome' => 'Cittadella', 'stato' => 'Italia'],
-        ['nome' => 'Perugia', 'stato' => 'Italia'],
-        ['nome' => 'Pordenone', 'stato' => 'Italia'],
         ['nome' => 'Reggiana', 'stato' => 'Italia'],
-        ['nome' => 'Vicenza Virtus', 'stato' => 'Italia'],
         ['nome' => 'Mantova', 'stato' => 'Italia'],
-        ['nome' => 'Triestina', 'stato' => 'Italia'],
+        ['nome' => 'Juve Stabia', 'stato' => 'Italia'],
+        ['nome' => 'Catanzaro', 'stato' => 'Italia'],
+        ['nome' => 'Cesena', 'stato' => 'Italia'],
+        ['nome' => 'Modena', 'stato' => 'Italia'],
+        ['nome' => 'Carrarese', 'stato' => 'Italia'],
+        ['nome' => 'Sudtirol', 'stato' => 'Italia'],
+
 
         // Francia
         ['nome' => 'Paris Saint-Germain', 'stato' => 'Francia'],
@@ -391,7 +362,6 @@ class Table
     ];
 
     private $squadre_competizioni = [
-        // Serie A
         ['squadra_nome' => 'Juventus', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
         ['squadra_nome' => 'Milan', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
         ['squadra_nome' => 'Inter', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
@@ -402,14 +372,38 @@ class Table
         ['squadra_nome' => 'Torino', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
         ['squadra_nome' => 'Fiorentina', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
         ['squadra_nome' => 'Genoa', 'squadra_stato' => 'Italia',  'competizione_nome' =>  'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Bologna', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Cagliari', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Empoli', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Lecce', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Monza', 'squadra_stato' => 'Italia',  'competizione_nome' =>  'Serie A',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Udinese',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie A',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Verona',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie A',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Parma', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Como', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Venezia', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie A', 'competizione_stato' => 'Italia'],
 
         // Serie B
-        ['squadra_nome' => 'Parma', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
-        ['squadra_nome' => 'Cagliari', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
-        ['squadra_nome' => 'Brescia', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
-        ['squadra_nome' => 'Reggina', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
-        ['squadra_nome' => 'Perugia', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
-        ['squadra_nome' => 'Cittadella', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Sampdoria', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Sassuolo', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Salernitana', 'squadra_stato' => 'Italia', 'competizione_nome' => 'Serie B', 'competizione_stato' => 'Italia'],
+        ['squadra_nome' => 'Cremonese',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Frosinone',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Spezia',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Bari',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Palermo',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Brescia',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Cosenza',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Pisa',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Cittadella',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Reggiana',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Mantova',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Juve Stabia',  'squadra_stato' =>  'Italia',  'competizione_nome' =>  'Serie B',  'competizione_stato' =>  'Italia'],
+        ['squadra_nome' => 'Catanzaro',   'squadra_stato' =>   'Italia',   'competizione_nome' =>   'Serie B',   'competizione_stato' =>   'Italia'],
+        ['squadra_nome' => 'Cesena',   'squadra_stato' =>   'Italia',   'competizione_nome' =>   'Serie B',   'competizione_stato' =>   'Italia'],
+        ['squadra_nome' => 'Modena',   'squadra_stato' =>   'Italia',   'competizione_nome' =>   'Serie B',   'competizione_stato' =>   'Italia'],
+        ['squadra_nome' => "Carrarese",   "squadra_stato" => "Italia", "competizione_nome" => "Serie B", "competizione_stato" => "Italia"],
+        ['squadra_nome' => "Sudtirol",   "squadra_stato" => "Italia", "competizione_nome" => "Serie B", "competizione_stato" => "Italia"],
 
         // UEFA Champions League
         ['squadra_nome' => 'Genoa', 'squadra_stato' => 'Italia',  'competizione_nome' =>  'UEFA Champions League', 'competizione_stato' => 'Europa'],
@@ -431,7 +425,6 @@ class Table
         ['squadra_nome' => 'Wolverhampton', 'squadra_stato' => 'Inghilterra', 'competizione_nome' => 'UEFA Europa League', 'competizione_stato' => 'Europa'],
 
         // Aggiungi altre competizioni o squadre qui
-        // E.g., Copa Libertadores, Serie C, altre squadre per altre competizioni.
     ];
 
 

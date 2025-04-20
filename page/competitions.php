@@ -1,5 +1,9 @@
 <?php
 $competizioni = $db->select("SELECT * FROM competizioni ORDER BY id");
+if (isset($_GET['competition'])) {
+    $c = $_GET['competition'];
+    echo htmlspecialchars($c); // Sanitize input to prevent XSS
+}
 ?>
 
 <div class="container py-5">
@@ -23,15 +27,18 @@ $competizioni = $db->select("SELECT * FROM competizioni ORDER BY id");
                     WHERE competizione_nome = ? AND competizione_stato = ?
                 ", [$competizione['nome'], $competizione['stato']]);
 
-                // Crea una lista di nomi delle squadre separati da virgola
-                $squadre_nomi = array_column($squadre, 'squadra_nome');
-                $squadre_lista = implode(', ', $squadre_nomi);
+                $squadre_lista = '';
+                foreach ($squadre as $squadra) {
+                    $squadre_lista .= '<a href="index.php?page=teams&team=' . urlencode($squadra['squadra_nome']) . '">' . htmlspecialchars($squadra['squadra_nome']) . '</a>, ';
+                }
+                // Rimuove l'ultima virgola e spazio
+                $squadre_lista = rtrim($squadre_lista, ', ');
                 ?>
                 <tr>
-                    <td><?= htmlspecialchars($competizione['nome']) ?></td>
+                    <td><a href="index.php?page=competitions&competition=<?= $competizione['nome'] ?>"><?= htmlspecialchars($competizione['nome']) ?></a></td>
                     <td><?= htmlspecialchars($competizione['descrizione'] ?? '-') ?></td>
-                    <td><?= htmlspecialchars($competizione['stato'] ?? '-') ?></td>
-                    <td><?= htmlspecialchars($squadre_lista ?? '-') ?></td> <!-- Lista delle squadre -->
+                    <td><a href="index.php?page=states&state=<?= $competizione['stato'] ?>"><?= htmlspecialchars($competizione['stato']) ?></a></td>
+                    <td><?= $squadre_lista ?></td> <!-- Lista delle squadre -->
                 </tr>
             <?php endforeach; ?>
         </tbody>

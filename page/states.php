@@ -1,5 +1,10 @@
 <?php
 $stati = $db->select("SELECT * FROM stati ORDER BY id");
+
+if (isset($_GET['state'])) {
+    $s = $_GET['state'];
+    echo htmlspecialchars($s); // Sanitize input to prevent XSS
+}
 ?>
 
 <div class="container py-5">
@@ -16,9 +21,9 @@ $stati = $db->select("SELECT * FROM stati ORDER BY id");
         <tbody>
             <?php foreach ($stati as $stato): ?>
                 <tr>
-                    <td><?= htmlspecialchars($stato['nome']) ?></td>
+                    <td><a href="index.php?page=states&state=<?= $stato['nome'] ?>"><?= htmlspecialchars($stato['nome']) ?></a></td>
                     <td><?= htmlspecialchars($stato['descrizione'] ?? '-') ?></td>
-                    <td><?= htmlspecialchars($stato['parent_id'] ?? '-') ?></td>
+                    <td><a href="index.php?page=states&state=<?= isset($stato['parent_id']) ? $stato['parent_id'] : '' ?>"><?= isset($stato['parent_id']) ? htmlspecialchars($stato['parent_id']) : '' ?></a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
