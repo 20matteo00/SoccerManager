@@ -39,27 +39,31 @@ if (isset($_GET['state'])) {
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
-                <th><?= $lang->getstring('flag') ?></th>
-                <th><?= $lang->getstring('name') ?></th>
-                <th><?= $lang->getstring('description') ?></th>
-                <th><?= $lang->getstring('parent') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('flag') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('parent') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($stati as $stato): ?>
                 <?php
                 $iso = json_decode($stato['params'])->isocode;
-                $url  = "https://flagcdn.com/256x192/{$iso}.png";
+                if (empty($iso)) {
+                    $url = 'images/Continenti/'.$stato["nome"]. '.png'; // codice ISO di fallback
+                } else {
+                    $url  = "https://flagcdn.com/256x192/{$iso}.png";
+                }
                 ?>
                 <tr>
-                    <td><img src="<?= $url ?>" alt="Bandiera <?= $stato['nome'] ?>" class="img-fluid mb-2 border"></td>
-                    <td>
+                    <td class="text-center align-middle"><img src="<?= $url ?>" alt="Bandiera <?= $stato['nome'] ?>" class="img-fluid myimg"></td>
+                    <td class="text-center align-middle">
                         <a href="index.php?page=states&state=<?= urlencode($stato['nome']) ?>">
                             <?= htmlspecialchars($stato['nome']) ?>
                         </a>
                     </td>
-                    <td><?= htmlspecialchars($stato['descrizione'] ?? '-') ?></td>
-                    <td>
+                    <td class="text-center align-middle"><?= htmlspecialchars($stato['descrizione'] ?? '-') ?></td>
+                    <td class="text-center align-middle">
                         <?php if (!empty($stato['parent_id'])): ?>
                             <a href="index.php?page=states&state=<?= urlencode($stato['parent_id']) ?>">
                                 <?= htmlspecialchars($stato['parent_id']) ?>

@@ -39,10 +39,10 @@ if (isset($_GET['competition'])) {
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col"><?= $lang->getstring('name') ?></th>
-                <th scope="col"><?= $lang->getstring('description') ?></th>
-                <th scope="col"><?= $lang->getstring('state') ?></th>
-                <th scope="col"><?= $lang->getstring('teams') ?></th> <!-- Nuova colonna per le squadre -->
+                <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('state') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('teams') ?></th> <!-- Nuova colonna per le squadre -->
             </tr>
         </thead>
         <tbody>
@@ -62,10 +62,10 @@ if (isset($_GET['competition'])) {
                 $squadre_lista = rtrim($squadre_lista, ', ');
                 ?>
                 <tr>
-                    <td><a href="index.php?page=competitions&competition=<?= $competizione['nome'] ?>"><?= htmlspecialchars($competizione['nome']) ?></a></td>
-                    <td><?= htmlspecialchars($competizione['descrizione'] ?? '-') ?></td>
-                    <td><a href="index.php?page=states&state=<?= $competizione['stato'] ?>"><?= htmlspecialchars($competizione['stato']) ?></a></td>
-                    <td><?= $squadre_lista ?></td> <!-- Lista delle squadre -->
+                    <td class="text-center align-middle"><a href="index.php?page=competitions&competition=<?= $competizione['nome'] ?>"><?= htmlspecialchars($competizione['nome']) ?></a></td>
+                    <td class="text-center align-middle"><?= htmlspecialchars($competizione['descrizione'] ?? '-') ?></td>
+                    <td class="text-center align-middle"><a href="index.php?page=states&state=<?= $competizione['stato'] ?>"><?= htmlspecialchars($competizione['stato']) ?></a></td>
+                    <td class="text-center align-middle"><?= $squadre_lista ?></td> <!-- Lista delle squadre -->
                 </tr>
             <?php endforeach; ?>
         </tbody>

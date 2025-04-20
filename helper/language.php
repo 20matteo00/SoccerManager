@@ -58,6 +58,7 @@ class Language
                 'description' => 'Descrizione',
                 'parent' => 'Gruppo',
                 'state' => 'Stato',
+                'flag' => 'Bandiera',
 
                 /* ERRORI */
                 // ERRORI AUTENTICAZIONE E PROFILO
@@ -111,6 +112,7 @@ class Language
                 'description' => 'Description',
                 'parent' => 'Group',
                 'state' => 'State',
+                'flag' => 'Flag',
 
                 /* ERRORI */
                 // ERRORI AUTENTICAZIONE E PROFILO                

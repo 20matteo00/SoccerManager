@@ -39,10 +39,10 @@ if (isset($_GET['team'])) {
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col"><?= $lang->getstring('name') ?></th>
-                <th scope="col"><?= $lang->getstring('description') ?></th>
-                <th scope="col"><?= $lang->getstring('state') ?></th>
-                <th scope="col"><?= $lang->getstring('competitions') ?></th> <!-- Nuova colonna per le competizioni -->
+                <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('state') ?></th>
+                <th class="text-center align-middle"><?= $lang->getstring('competitions') ?></th> <!-- Nuova colonna per le competizioni -->
             </tr>
         </thead>
         <tbody>
@@ -62,10 +62,10 @@ if (isset($_GET['team'])) {
                 $competizioni_lista = rtrim($competizioni_lista, ', ');
                 ?>
                 <tr>
-                    <td><a href="index.php?page=teams&team=<?= $squadra['nome'] ?>"><?= htmlspecialchars($squadra['nome']) ?></a></td>
-                    <td><?= htmlspecialchars($squadra['descrizione'] ?? '-') ?></td>
-                    <td><a href="index.php?page=states&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
-                    <td><?= $competizioni_lista ?></td> <!-- Lista delle competizioni -->
+                    <td class="text-center align-middle"><a href="index.php?page=teams&team=<?= $squadra['nome'] ?>"><?= htmlspecialchars($squadra['nome']) ?></a></td>
+                    <td class="text-center align-middle"><?= htmlspecialchars($squadra['descrizione'] ?? '-') ?></td>
+                    <td class="text-center align-middle"><a href="index.php?page=states&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
+                    <td class="text-center align-middle"><?= $competizioni_lista ?></td> <!-- Lista delle competizioni -->
                 </tr>
             <?php endforeach; ?>
         </tbody>

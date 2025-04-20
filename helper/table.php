@@ -4,12 +4,12 @@ class Table
 {
     private $db;
     private $continenti = [
-        ['nome' => 'Europa',       'iso' => 'eu'],
-        ['nome' => 'America Sud',  'iso' => 'sa'],
-        ['nome' => 'America Nord', 'iso' => 'na'],
-        ['nome' => 'Africa',       'iso' => 'af'],
-        ['nome' => 'Asia',         'iso' => 'as'],
-        ['nome' => 'Oceania',      'iso' => 'oc']
+        ['nome' => 'Europa',       'iso' => ''],
+        ['nome' => 'America Sud',  'iso' => ''],
+        ['nome' => 'America Nord', 'iso' => ''],
+        ['nome' => 'Africa',       'iso' => ''],
+        ['nome' => 'Asia',         'iso' => ''],
+        ['nome' => 'Oceania',      'iso' => '']
     ];
 
     private $stati_europa = [
@@ -515,7 +515,7 @@ class Table
         // 1) Mondo
         $this->db->insert(
             "INSERT IGNORE INTO stati (id, nome, params, parent_id) VALUES (?, ?, ?, ?)",
-            [1, 'Mondo', json_encode(['isocode' => 'un']), null]
+            [1, 'Mondo', json_encode(['isocode' => '']), null]
         );
 
         // 2) Continenti
@@ -543,7 +543,7 @@ class Table
         // 4) Personalizzato
         $this->db->insert(
             "INSERT IGNORE INTO stati (id, nome, params, parent_id) VALUES (?, ?, ?, ?)",
-            [999999, 'Personalizzato', json_encode(['isocode' => 'un']), null]
+            [999999, 'Personalizzato', json_encode(['isocode' => '']), null]
         );
     }
 

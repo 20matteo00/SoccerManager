@@ -11,3 +11,10 @@ a:hover, a:focus {
     color: var(--primary-color);
     text-decoration: underline;
 }
+
+.myimg {
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+}
