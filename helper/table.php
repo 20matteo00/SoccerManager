@@ -4,110 +4,113 @@ class Table
 {
     private $db;
     private $continenti = [
-        'Europa',
-        'America Sud',
-        'America Nord',
-        'Africa',
-        'Asia',
-        'Oceania'
-    ];
-    private $stati_europa = [
-        'Italia',
-        'Francia',
-        'Inghilterra',
-        'Germania',
-        'Spagna',
-        'Portogallo',
-        'Olanda',
-        'Belgio',
-        'Croazia',
-        'Svizzera',
-        'Danimarca',
-        'Svezia',
-        'Polonia',
-        'Austria',
-        'Norvegia',
-        'Serbia',
-        'Cechia',
-        'Ungheria',
-        'Slovacchia',
-        'Scozia',
-        'Finlandia',
-        'Slovenia',
-        'Ucraina',
-        'Grecia'
+        ['nome' => 'Europa',       'iso' => 'eu'],
+        ['nome' => 'America Sud',  'iso' => 'sa'],
+        ['nome' => 'America Nord', 'iso' => 'na'],
+        ['nome' => 'Africa',       'iso' => 'af'],
+        ['nome' => 'Asia',         'iso' => 'as'],
+        ['nome' => 'Oceania',      'iso' => 'oc']
     ];
 
+    private $stati_europa = [
+        ['nome' => 'Italia',        'iso' => 'it'],
+        ['nome' => 'Francia',       'iso' => 'fr'],
+        ['nome' => 'Inghilterra',   'iso' => 'gb'],
+        ['nome' => 'Germania',      'iso' => 'de'],
+        ['nome' => 'Spagna',        'iso' => 'es'],
+        ['nome' => 'Portogallo',    'iso' => 'pt'],
+        ['nome' => 'Olanda',        'iso' => 'nl'],
+        ['nome' => 'Belgio',        'iso' => 'be'],
+        ['nome' => 'Croazia',       'iso' => 'hr'],
+        ['nome' => 'Svizzera',      'iso' => 'ch'],
+        ['nome' => 'Danimarca',     'iso' => 'dk'],
+        ['nome' => 'Svezia',        'iso' => 'se'],
+        ['nome' => 'Polonia',       'iso' => 'pl'],
+        ['nome' => 'Austria',       'iso' => 'at'],
+        ['nome' => 'Norvegia',      'iso' => 'no'],
+        ['nome' => 'Serbia',        'iso' => 'rs'],
+        ['nome' => 'Cechia',        'iso' => 'cz'],
+        ['nome' => 'Ungheria',      'iso' => 'hu'],
+        ['nome' => 'Slovacchia',    'iso' => 'sk'],
+        ['nome' => 'Scozia',        'iso' => 'gb-sct'],
+        ['nome' => 'Finlandia',     'iso' => 'fi'],
+        ['nome' => 'Slovenia',      'iso' => 'si'],
+        ['nome' => 'Ucraina',       'iso' => 'ua'],
+        ['nome' => 'Grecia',        'iso' => 'gr']
+    ];
+
+
     private $stati_america_sud = [
-        'Brasile',
-        'Argentina',
-        'Uruguay',
-        'Colombia',
-        'Cile',
-        'Perù',
-        'Ecuador',
-        'Paraguay',
-        'Bolivia',
-        'Venezuela'
+        ['nome' => 'Brasile',     'iso' => 'br'],
+        ['nome' => 'Argentina',   'iso' => 'ar'],
+        ['nome' => 'Uruguay',     'iso' => 'uy'],
+        ['nome' => 'Colombia',    'iso' => 'co'],
+        ['nome' => 'Cile',        'iso' => 'cl'],
+        ['nome' => 'Perù',        'iso' => 'pe'],
+        ['nome' => 'Ecuador',     'iso' => 'ec'],
+        ['nome' => 'Paraguay',    'iso' => 'py'],
+        ['nome' => 'Bolivia',     'iso' => 'bo'],
+        ['nome' => 'Venezuela',   'iso' => 've'],
     ];
 
     private $stati_america_nord = [
-        'Messico',
-        'Stati Uniti',
-        'Costa Rica',
-        'Canada',
-        'Panama',
-        'Giamaica',
-        'Honduras',
-        'El Salvador',
-        'Guatemala',
-        'Trinidad e Tobago'
+        ['nome' => 'Messico',              'iso' => 'mx'],
+        ['nome' => 'Stati Uniti',         'iso' => 'us'],
+        ['nome' => 'Costa Rica',          'iso' => 'cr'],
+        ['nome' => 'Canada',              'iso' => 'ca'],
+        ['nome' => 'Panama',              'iso' => 'pa'],
+        ['nome' => 'Giamaica',            'iso' => 'jm'],
+        ['nome' => 'Honduras',            'iso' => 'hn'],
+        ['nome' => 'El Salvador',         'iso' => 'sv'],
+        ['nome' => 'Guatemala',           'iso' => 'gt'],
+        ['nome' => 'Trinidad e Tobago',   'iso' => 'tt'],
     ];
 
     private $stati_africa = [
-        'Egitto',
-        'Marocco',
-        'Senegal',
-        'Costa d\'Avorio',
-        'Nigeria',
-        'Tunisia',
-        'Algeria',
-        'Ghana',
-        'Sudafrica',
-        'Camerun',
-        'Mali',
-        'RD Congo',
-        'Burkina Faso',
-        'Zambia',
-        'Guinea'
+        ['nome' => 'Egitto',          'iso' => 'eg'],
+        ['nome' => 'Marocco',         'iso' => 'ma'],
+        ['nome' => 'Senegal',         'iso' => 'sn'],
+        ['nome' => "Costa d'Avorio",  'iso' => 'ci'],
+        ['nome' => 'Nigeria',         'iso' => 'ng'],
+        ['nome' => 'Tunisia',         'iso' => 'tn'],
+        ['nome' => 'Algeria',         'iso' => 'dz'],
+        ['nome' => 'Ghana',           'iso' => 'gh'],
+        ['nome' => 'Sudafrica',       'iso' => 'za'],
+        ['nome' => 'Camerun',         'iso' => 'cm'],
+        ['nome' => 'Mali',            'iso' => 'ml'],
+        ['nome' => 'RD Congo',        'iso' => 'cd'],
+        ['nome' => 'Burkina Faso',    'iso' => 'bf'],
+        ['nome' => 'Zambia',          'iso' => 'zm'],
+        ['nome' => 'Guinea',          'iso' => 'gn'],
     ];
 
     private $stati_asia = [
-        'Giappone',
-        'Corea del Sud',
-        'Arabia Saudita',
-        'Iran',
-        'Australia', // in AFC, quindi lo includiamo qui
-        'Qatar',
-        'Uzbekistan',
-        'Cina',
-        'Iraq',
-        'Emirati Arabi Uniti',
-        'Giordania',
-        'India',
-        'Thailandia',
-        'Oman'
+        ['nome' => 'Giappone',            'iso' => 'jp'],
+        ['nome' => 'Corea del Sud',       'iso' => 'kr'],
+        ['nome' => 'Arabia Saudita',      'iso' => 'sa'],
+        ['nome' => 'Iran',                'iso' => 'ir'],
+        ['nome' => 'Australia',           'iso' => 'au'],
+        ['nome' => 'Qatar',               'iso' => 'qa'],
+        ['nome' => 'Uzbekistan',          'iso' => 'uz'],
+        ['nome' => 'Cina',                'iso' => 'cn'],
+        ['nome' => 'Iraq',                'iso' => 'iq'],
+        ['nome' => 'Emirati Arabi Uniti', 'iso' => 'ae'],
+        ['nome' => 'Giordania',           'iso' => 'jo'],
+        ['nome' => 'India',               'iso' => 'in'],
+        ['nome' => 'Thailandia',          'iso' => 'th'],
+        ['nome' => 'Oman',                'iso' => 'om'],
     ];
 
     private $stati_oceania = [
-        'Nuova Zelanda',
-        'Isole Salomone',
-        'Figi',
-        'Nuova Caledonia',
-        'Papua Nuova Guinea',
-        'Tahiti',
-        'Vanuatu'
+        ['nome' => 'Nuova Zelanda',        'iso' => 'nz'],
+        ['nome' => 'Isole Salomone',       'iso' => 'sb'],
+        ['nome' => 'Figi',                 'iso' => 'fj'],
+        ['nome' => 'Nuova Caledonia',      'iso' => 'nc'],
+        ['nome' => 'Papua Nuova Guinea',   'iso' => 'pg'],
+        ['nome' => 'Tahiti',               'iso' => 'pf'],
+        ['nome' => 'Vanuatu',              'iso' => 'vu'],
     ];
+
 
     private $competizioni = [
         ['nome' => 'Coppa del Mondo',       'stato' => 'Mondo'],  // Mondo
@@ -511,33 +514,40 @@ class Table
     {
         // 1) Mondo
         $this->db->insert(
-            "INSERT IGNORE INTO stati (id, nome, parent_id) VALUES (?, ?, ?)",
-            [1, 'Mondo', null]
+            "INSERT IGNORE INTO stati (id, nome, params, parent_id) VALUES (?, ?, ?, ?)",
+            [1, 'Mondo', json_encode(['isocode' => 'un']), null]
         );
 
-        // 2) Continenti: ID 2–7, parent_id = 1
-        foreach ($this->continenti as $i => $continent) {
+        // 2) Continenti
+        foreach ($this->continenti as $i => $cont) {
             $id = $i + 2;
             $this->db->insert(
-                "INSERT IGNORE INTO stati (id, nome, parent_id) VALUES (?, ?, ?)",
-                [$id, $continent, 'Mondo']
+                "INSERT IGNORE INTO stati (id, nome, params, parent_id) VALUES (?, ?, ?, ?)",
+                [
+                    $id,
+                    $cont['nome'],
+                    json_encode(['isocode' => $cont['iso']]),
+                    'Mondo'
+                ]
             );
         }
 
         // 3) Stati per ogni continente
-        $this->inserisciStatiFigli($this->stati_europa, 'Europa', 100);
-        $this->inserisciStatiFigli($this->stati_america_sud, 'America Sud', 200);
+        $this->inserisciStatiFigli($this->stati_europa,       'Europa',       100);
+        $this->inserisciStatiFigli($this->stati_america_sud,  'America Sud',  200);
         $this->inserisciStatiFigli($this->stati_america_nord, 'America Nord', 300);
-        $this->inserisciStatiFigli($this->stati_africa, 'Africa', 400);
-        $this->inserisciStatiFigli($this->stati_asia, 'Asia', 500);
-        $this->inserisciStatiFigli($this->stati_oceania, 'Oceania', 600);
+        $this->inserisciStatiFigli($this->stati_africa,       'Africa',       400);
+        $this->inserisciStatiFigli($this->stati_asia,         'Asia',         500);
+        $this->inserisciStatiFigli($this->stati_oceania,      'Oceania',      600);
 
         // 4) Personalizzato
         $this->db->insert(
-            "INSERT IGNORE INTO stati (id, nome, parent_id) VALUES (?, ?, ?)",
-            [999999, 'Personalizzato', null]
+            "INSERT IGNORE INTO stati (id, nome, params, parent_id) VALUES (?, ?, ?, ?)",
+            [999999, 'Personalizzato', json_encode(['isocode' => 'un']), null]
         );
     }
+
+
 
     public function inserisci_competizioni()
     {
@@ -579,10 +589,15 @@ class Table
     /* UTILITA' */
     private function inserisciStatiFigli(array $stati, string $parentId, int $startId)
     {
-        foreach ($stati as $index => $nome) {
+        foreach ($stati as $index => $st) {
             $this->db->insert(
-                "INSERT IGNORE INTO stati (id, nome, parent_id) VALUES (?, ?, ?)",
-                [$startId + $index, $nome, $parentId]
+                "INSERT IGNORE INTO stati (id, nome, params, parent_id) VALUES (?, ?, ?, ?)",
+                [
+                    $startId + $index,
+                    $st['nome'],
+                    json_encode(['isocode' => $st['iso']]),
+                    $parentId
+                ]
             );
         }
     }

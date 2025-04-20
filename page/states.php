@@ -39,6 +39,7 @@ if (isset($_GET['state'])) {
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
+                <th><?= $lang->getstring('flag') ?></th>
                 <th><?= $lang->getstring('name') ?></th>
                 <th><?= $lang->getstring('description') ?></th>
                 <th><?= $lang->getstring('parent') ?></th>
@@ -46,7 +47,12 @@ if (isset($_GET['state'])) {
         </thead>
         <tbody>
             <?php foreach ($stati as $stato): ?>
+                <?php
+                $iso = json_decode($stato['params'])->isocode;
+                $url  = "https://flagcdn.com/256x192/{$iso}.png";
+                ?>
                 <tr>
+                    <td><img src="<?= $url ?>" alt="Bandiera <?= $stato['nome'] ?>" class="img-fluid mb-2 border"></td>
                     <td>
                         <a href="index.php?page=states&state=<?= urlencode($stato['nome']) ?>">
                             <?= htmlspecialchars($stato['nome']) ?>
