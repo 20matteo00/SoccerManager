@@ -5,14 +5,15 @@ require_once("helper/config.php");
 require_once("helper/db.php");
 require_once("helper/table.php");
 require_once("helper/language.php");
+require_once("helper/pagination.php");
 
 
 $db = new Db(); // Inizializza la connessione al database
 $table = new Table($db); // Inizializza la classe table con la connessione al database
-$page = isset($_GET["page"]) ? "page/" . $_GET["page"] . ".php" : "index.php";
+$page = isset($_GET["page"]) ? "page/" . $_GET["page"] . ".php" : "page/home.php"; // Imposta la pagina di default
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
-}
+} 
 $lang = new Language($_SESSION['lang'] ?? 'it');
 ?>
 

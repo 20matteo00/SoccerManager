@@ -1,8 +1,35 @@
 <?php
-$squadre = $db->select("SELECT * FROM squadre ORDER BY id");
+// 1) Conteggio totale
+$totalRecords = $db->select("SELECT COUNT(*) as count FROM squadre")[0]['count'];
+
+// 2) Routing e paginazione
+//   - 'page' è per il routing (teams)
+//   - 'pag' è per la pagina di paginazione
+$currentRouterPage = $_GET['page'] ?? 'teams';    // per il router
+$pagina    = isset($_GET['pag'])     ? (int)$_GET['pag']     : 1;   // pagina di paginazione
+$perPage   = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 10;  // risultati per pagina
+
+// 3) Istanza di Pagination (4° argomento = nome del parametro pagina)
+$pagination = new Pagination($totalRecords, $perPage, $pagina, 'pag');
+
+// 4) Calcolo offset
+$offset = $pagination->getLimit();
+
+// 5) Query paginata
+$squadre = $db->select(
+    "SELECT * FROM squadre ORDER BY id LIMIT ? OFFSET ?",
+    [$perPage, $offset]
+);
+
+// 6) Genera i link di paginazione
+$baseUrl = "index.php?page=teams";
+$paginationLinks = $pagination->generatePagination($baseUrl);
+
+// 7) Se hai selezionato una competizione da dettagliare
 if (isset($_GET['team'])) {
-    $t = $_GET['team'];
-    echo htmlspecialchars($t); // Sanitize input to prevent XSS
+    echo '<div class="alert alert-info">Dettaglio: '
+        . htmlspecialchars($_GET['team'])
+        . '</div>';
 }
 ?>
 
@@ -43,4 +70,11 @@ if (isset($_GET['team'])) {
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- Paginazione -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <?= $paginationLinks ?>
+        </ul>
+    </nav>
 </div>
