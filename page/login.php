@@ -9,11 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $utente = $db->select("SELECT * FROM utenti WHERE email = ?", [$email]);
+    $utente = $db->select("SELECT * FROM utenti WHERE email = ? OR username = ?", [$email, $email]);
 
     if ($utente && password_verify($password, $utente[0]['password'])) {
         $_SESSION['user'] = $utente[0];
         $_SESSION['username'] = $utente[0]['username'];
+        $_SESSION['email'] = $utente[0]['email'];
         header("Location: index.php");
         exit;
     } else {
@@ -33,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <form method="POST" class="card p-4 shadow-sm">
         <div class="mb-3">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control" required>
+            <label>Email o Username</label>
+            <input type="text" name="email" class="form-control" required>
         </div>
         <div class="mb-3">
             <label>Password</label>
             <input type="password" name="password" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-success w-100">Accedi</button>
-        <p class="mt-3 text-center">Non sei registrato? <a href="register.php">Registrati</a></p>
+        <button type="submit" class="btn btn-primary w-100">Accedi</button>
+        <p class="mt-3 text-center">Non sei registrato? <a href="index.php?page=register">Registrati</a></p>
     </form>
 </div>

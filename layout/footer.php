@@ -3,7 +3,7 @@
         <div class="row">
             <!-- Colonna 1: Informazioni -->
             <div class="col-12 col-lg-4">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index.php">
                     <img src="images/logo.png" alt="Soccer Manager" class="d-inline-block align-text-top">
                 </a>
             </div>
