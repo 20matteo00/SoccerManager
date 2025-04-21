@@ -59,7 +59,11 @@ class Language
                 'parent' => 'Gruppo',
                 'state' => 'Stato',
                 'flag' => 'Bandiera',
+                'params' => 'Parametri',
                 'actions' => 'Azioni',
+                'value' => 'Valore',
+                'attack' => 'Attacco',
+                'defense' => 'Difesa',
 
                 // PULSANTI
                 'edit' => 'Modifica',
@@ -118,7 +122,11 @@ class Language
                 'parent' => 'Group',
                 'state' => 'State',
                 'flag' => 'Flag',
+                'params' => 'Params',
                 'actions' => 'Actions',
+                'value' => 'Value',
+                'attack' => 'Attack',
+                'defense' => 'Defense',
 
                 // PULSANTI
                 'edit' => 'Edit',

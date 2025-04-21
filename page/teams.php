@@ -1,7 +1,8 @@
 <?php
 $whereClause = '';
 $params      = [];
-if (isset($_GET['parent'])) {
+$parent     = $_GET['parent'] ?? null;
+if ($parent) {
     // Bind del parent_id (è una stringa, quindi lo passiamo come parametro)
     $whereClause = "WHERE stato = ?";
     $params[]    = $_GET['parent'];
@@ -53,7 +54,7 @@ if (isset($_GET['team'])) {
         . '</div>';
 }
 $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY stato ORDER BY stato");
-
+$competizioni = $db->select("SELECT competizione_nome FROM squadre_competizioni WHERE squadra_nome IS NOT NULL GROUP BY competizione_nome ORDER BY competizione_nome");
 ?>
 
 <div class="container py-5">
@@ -63,14 +64,16 @@ $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY
         if (isset($_GET['parent'])) {
             echo ' -> ' . htmlspecialchars($_GET['parent']);
         } ?>
-    </h1> <?php $pagination->generatefilter($stati, "teams"); ?>
-
+    </h1>
+    <?php $pagination->generatefilter($stati, "teams"); ?>
+    <?php $pagination->generatefiltersquadre_competizioni($competizioni, "teams", "competizione_nome"); ?>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
                 <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('state') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('competitions') ?></th> <!-- Nuova colonna per le competizioni -->
+                <th class="text-center align-middle"><?= $lang->getstring('params') ?></th>
                 <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 0): ?>
                     <th class="text-center align-middle"><?= $lang->getstring('actions') ?></th>
                 <?php endif; ?>
@@ -101,10 +104,24 @@ $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY
                     </td>
                     <td class="text-center align-middle"><a href="index.php?page=details&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
                     <td class="text-center align-middle"><?= $competizioni_lista ?></td> <!-- Lista delle competizioni -->
+                    <td class="text-center align-middle">
+                        <div>
+                            <?php
+                            $params = json_decode($squadra['params'] ?? '{}');
+                            $valore = isset($params->valore_squadra) ? $params->valore_squadra : '-';
+                            $attacco = isset($params->attacco) ? $params->attacco : '-';
+                            $difesa = isset($params->difesa) ? $params->difesa : '-';
+                            ?>
+
+                            <strong><?= $lang->getstring('value') ?>:</strong> <?= htmlspecialchars($valore) ?> <br>
+                            <strong><?= $lang->getstring('attack') ?>:</strong> <?= htmlspecialchars($attacco) ?> <br>
+                            <strong><?= $lang->getstring('defense') ?>:</strong> <?= htmlspecialchars($difesa) ?>
+                        </div>
+                    </td>
                     <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 0): ?>
                         <td class="text-center align-middle">
-                            <a href="index.php?page=utility&action=edit&team=<?= $squadra['nome'] ?>" class="btn btn-warning btn-sm"><?= $lang->getstring('edit') ?></a>
-                            <a href="index.php?page=utility&action=delete&team=<?= $squadra['nome'] ?>" class="btn btn-danger btn-sm"><?= $lang->getstring('delete') ?></a>
+                            <a href="index.php?page=utility&action=edit&team=<?= $squadra['nome'] ?><?= $parent ? '&parent=' . $parent : '' ?><?= $pagina ? '&pag=' . $pagina : '' ?><?= $perPage ? '&perPage=' . $perPage : '' ?>" class="btn btn-warning btn-sm"><?= $lang->getstring('edit') ?></a>
+                            <a href="index.php?page=utility&action=delete&team=<?= $squadra['nome'] ?><?= $parent ? '&parent=' . $parent : '' ?><?= $pagina ? '&pag=' . $pagina : '' ?><?= $perPage ? '&perPage=' . $perPage : '' ?>" class="btn btn-danger btn-sm"><?= $lang->getstring('delete') ?></a>
                         </td>
                     <?php endif; ?>
                 </tr>

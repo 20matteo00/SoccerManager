@@ -99,9 +99,23 @@ class Pagination
         foreach ($query as $stato) {
             $label = htmlspecialchars($stato['parent_id'] ?? $stato['stato'] ?? ''); // adattabile a entrambi i casi
             $value = urlencode($label);
-            echo '<a href="index.php?page='.$page.'&parent=' . $value . '" 
+            echo '<a href="index.php?page=' . $page . '&parent=' . $value . '" 
                   class="btn btn-outline-primary text-decoration-none rounded-pill px-4 flex-shrink-0">'
                 . $label .
+                '</a>';
+        }
+        echo '</div>';
+    }
+
+    public function generatefiltersquadre_competizioni(array $query, string $page, string $label)
+    {
+        echo '<div class="d-flex overflow-auto my-3 py-3 gap-3">';
+        foreach ($query as $q) {
+            $text = htmlspecialchars($q[$label] ?? '-');
+            $value = urlencode($text);
+            echo '<a href="index.php?page=' . $page . '&parent=' . $value . '" 
+              class="btn btn-outline-primary text-decoration-none rounded-pill px-4 flex-shrink-0">'
+                . $text .
                 '</a>';
         }
         echo '</div>';

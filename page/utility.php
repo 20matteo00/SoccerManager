@@ -3,6 +3,9 @@
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
     $team = $_GET['team'] ?? null;
+    $parent = $_GET['parent'] ?? null;
+    $pag = $_GET['pag'] ?? null;
+    $perPage = $_GET['perPage'] ?? null;
 
     if ($action === 'edit' && $team) {
         $squadra = $db->select("SELECT * FROM squadre WHERE nome = ?", [$team]);
@@ -12,7 +15,7 @@ if (isset($_GET['action'])) {
         }
     } elseif ($action === 'delete' && $team) {
         $db->delete("DELETE FROM squadre WHERE nome = ?", [$team]);
-        header('Location: index.php?page=teams');
+        header('Location: index.php?page=teams' . ($parent ? '&parent=' . $parent : '') . ($pag ? '&pag=' . $pag : '') . ($perPage ? '&perPage=' . $perPage : ''));
         exit;
     } else {
         header('Location: index.php');
@@ -36,7 +39,7 @@ if (isset($_POST['invia']) && isset($team)) {
 
     $json = json_encode($params);
     $db->update("UPDATE squadre SET params = ? WHERE nome = ?", [$json, $team]);
-    header('Location: index.php?page=teams');
+    header('Location: index.php?page=teams' . ($parent ? '&parent=' . $parent : '') . ($pag ? '&pag=' . $pag : '') . ($perPage ? '&perPage=' . $perPage : ''));
     exit;
 }
 
@@ -47,7 +50,7 @@ if (isset($squadra) && !empty($squadra)):
 
     $coloreSfondo = $params['colore_sfondo'] ?? '#000000';
     $coloreTesto  = $params['colore_testo'] ?? '#ffffff';
-    $coloreBordo  = $params['colore_bordo'] ?? '#000000';
+    $coloreBordo  = $params['colore_bordo'] ?? '#ffffff';
     $valore       = $params['valore_squadra'] ?? 0;
     $attacco      = $params['attacco'] ?? 0;
     $difesa       = $params['difesa'] ?? 0;
@@ -86,8 +89,7 @@ if (isset($squadra) && !empty($squadra)):
         </div>
 
         <div class="mt-4">
-            <button type="submit" name="invia" class="btn btn-success">💾 Salva Parametri</button>
-            <a href="index.php?page=teams" class="btn btn-danger ms-2">↩️ Annulla</a>
+            <button type="submit" name="invia" class="btn btn-success"><?= $lang->getstring("save") ?></button>
         </div>
     </form>
 </div>
