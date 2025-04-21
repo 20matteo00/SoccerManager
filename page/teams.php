@@ -69,7 +69,6 @@ $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY
         <thead class="table-dark">
             <tr>
                 <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
-                <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('state') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('competitions') ?></th> <!-- Nuova colonna per le competizioni -->
                 <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 0): ?>
@@ -100,7 +99,6 @@ $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY
                         <a href="index.php?page=details&team=<?= $squadra['nome'] ?>"><?php $s->creasquadra(); ?>
                         </a>
                     </td>
-                    <td class="text-center align-middle"><?= htmlspecialchars($squadra['descrizione'] ?? '-') ?></td>
                     <td class="text-center align-middle"><a href="index.php?page=details&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
                     <td class="text-center align-middle"><?= $competizioni_lista ?></td> <!-- Lista delle competizioni -->
                     <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 0): ?>

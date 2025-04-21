@@ -61,7 +61,6 @@ $continenti = $db->select("SELECT parent_id FROM stati WHERE parent_id IS NOT NU
             <tr>
                 <th class="text-center align-middle"><?= $lang->getstring('flag') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
-                <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('parent') ?></th>
             </tr>
         </thead>
@@ -82,7 +81,6 @@ $continenti = $db->select("SELECT parent_id FROM stati WHERE parent_id IS NOT NU
                             <?= htmlspecialchars($stato['nome']) ?>
                         </a>
                     </td>
-                    <td class="text-center align-middle"><?= htmlspecialchars($stato['descrizione'] ?? '-') ?></td>
                     <td class="text-center align-middle">
                         <?php if (!empty($stato['parent_id'])): ?>
                             <a href="index.php?page=details&state=<?= urlencode($stato['parent_id']) ?>">

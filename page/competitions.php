@@ -68,7 +68,6 @@ $stati = $db->select("SELECT stato FROM competizioni WHERE stato IS NOT NULL GRO
         <thead class="table-dark">
             <tr>
                 <th class="text-center align-middle"><?= $lang->getstring('name') ?></th>
-                <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('state') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('teams') ?></th> <!-- Nuova colonna per le squadre -->
             </tr>
@@ -91,7 +90,6 @@ $stati = $db->select("SELECT stato FROM competizioni WHERE stato IS NOT NULL GRO
                 ?>
                 <tr>
                     <td class="text-center align-middle"><a href="index.php?page=details&competition=<?= $competizione['nome'] ?>"><?= htmlspecialchars($competizione['nome']) ?></a></td>
-                    <td class="text-center align-middle"><?= htmlspecialchars($competizione['descrizione'] ?? '-') ?></td>
                     <td class="text-center align-middle"><a href="index.php?page=details&state=<?= $competizione['stato'] ?>"><?= htmlspecialchars($competizione['stato']) ?></a></td>
                     <td class="text-center align-middle"><?= $squadre_lista ?></td> <!-- Lista delle squadre -->
                 </tr>
