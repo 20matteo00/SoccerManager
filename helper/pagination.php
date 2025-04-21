@@ -92,4 +92,18 @@ class Pagination
         // Se baseUrl ha già ?, non serve, ma qui lo passiamo così com’è
         return $base = $_SERVER['PHP_SELF'] . '?' . $qs;
     }
+
+    public function generatefilter(array $query, string $page)
+    {
+        echo '<div class="d-flex overflow-auto my-3 py-3 gap-3">';
+        foreach ($query as $stato) {
+            $label = htmlspecialchars($stato['parent_id'] ?? $stato['stato'] ?? ''); // adattabile a entrambi i casi
+            $value = urlencode($label);
+            echo '<a href="index.php?page='.$page.'&parent=' . $value . '" 
+                  class="btn btn-outline-primary text-decoration-none rounded-pill px-4 flex-shrink-0">'
+                . $label .
+                '</a>';
+        }
+        echo '</div>';
+    }
 }

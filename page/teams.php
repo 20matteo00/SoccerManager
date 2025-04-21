@@ -1,6 +1,17 @@
 <?php
+$whereClause = '';
+$params      = [];
+if (isset($_GET['parent'])) {
+    // Bind del parent_id (è una stringa, quindi lo passiamo come parametro)
+    $whereClause = "WHERE stato = ?";
+    $params[]    = $_GET['parent'];
+}
 // 1) Conteggio totale
-$totalRecords = $db->select("SELECT COUNT(*) as count FROM squadre")[0]['count'];
+$totalRow     = $db->select(
+    "SELECT COUNT(*) AS count FROM squadre $whereClause",
+    $params
+);
+$totalRecords = $totalRow[0]['count'];
 
 // 2) Routing e paginazione
 //   - 'page' è per il routing (teams)
@@ -16,10 +27,20 @@ $pagination = new Pagination($totalRecords, $perPage, $pagina, 'pag');
 $offset = $pagination->getLimit();
 
 // 5) Query paginata
-$squadre = $db->select(
-    "SELECT * FROM squadre ORDER BY id LIMIT ? OFFSET ?",
+$queryParams = array_merge(
+    $params,
     [$perPage, $offset]
 );
+
+$squadre = $db->select(
+    "SELECT * 
+     FROM squadre 
+     $whereClause 
+     ORDER BY id 
+     LIMIT ? OFFSET ?",
+    $queryParams
+);
+
 
 // 6) Genera i link di paginazione
 $baseUrl = "index.php?page=teams";
@@ -31,10 +52,18 @@ if (isset($_GET['team'])) {
         . htmlspecialchars($_GET['team'])
         . '</div>';
 }
+$stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY stato ORDER BY stato");
+
 ?>
 
 <div class="container py-5">
-    <h1 class="mb-4 text-center"><?= $lang->getstring('teams') ?></h1>
+    <h1 class="mb-4 text-center">
+        <?php
+        echo $lang->getstring('teams');
+        if (isset($_GET['parent'])) {
+            echo ' -> ' . htmlspecialchars($_GET['parent']);
+        } ?>
+    </h1> <?php $pagination->generatefilter($stati, "teams"); ?>
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">

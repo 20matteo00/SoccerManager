@@ -1,6 +1,17 @@
 <?php
+$whereClause = '';
+$params      = [];
+if (isset($_GET['parent'])) {
+    // Bind del parent_id (è una stringa, quindi lo passiamo come parametro)
+    $whereClause = "WHERE parent_id = ?";
+    $params[]    = $_GET['parent'];
+}
 // 1) Conteggio totale
-$totalRecords = $db->select("SELECT COUNT(*) as count FROM stati")[0]['count'];
+$totalRow     = $db->select(
+    "SELECT COUNT(*) AS count FROM stati $whereClause",
+    $params
+);
+$totalRecords = $totalRow[0]['count'];
 
 // 2) Routing e paginazione
 //   - 'page' è per il routing (states)
@@ -16,19 +27,35 @@ $pagination = new Pagination($totalRecords, $perPage, $pagina, 'pag');
 $offset = $pagination->getLimit();
 
 // 5) Query paginata
-$stati = $db->select(
-    "SELECT * FROM stati ORDER BY id LIMIT ? OFFSET ?",
+$queryParams = array_merge(
+    $params,
     [$perPage, $offset]
+);
+
+$stati = $db->select(
+    "SELECT * 
+     FROM stati 
+     $whereClause 
+     ORDER BY id 
+     LIMIT ? OFFSET ?",
+    $queryParams
 );
 
 // 6) Genera i link di paginazione
 $baseUrl = "index.php?page=states";
 $paginationLinks = $pagination->generatePagination($baseUrl);
+$continenti = $db->select("SELECT parent_id FROM stati WHERE parent_id IS NOT NULL GROUP BY parent_id");
 ?>
 
 <div class="container py-5">
-    <h1 class="mb-4 text-center"><?= $lang->getstring('states') ?></h1>
-
+    <h1 class="mb-4 text-center">
+        <?php 
+        echo $lang->getstring('states');
+        if (isset($_GET['parent'])) {
+            echo ' -> ' . htmlspecialchars($_GET['parent']);
+        } ?>
+    </h1>
+    <?php $pagination->generatefilter($continenti, "states"); ?>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
@@ -43,7 +70,7 @@ $paginationLinks = $pagination->generatePagination($baseUrl);
                 <?php
                 $iso = json_decode($stato['params'])->isocode;
                 if (empty($iso)) {
-                    $url = 'images/Continenti/'.$stato["nome"]. '.png'; // codice ISO di fallback
+                    $url = 'images/Continenti/' . $stato["nome"] . '.png'; // codice ISO di fallback
                 } else {
                     $url  = "https://flagcdn.com/256x192/{$iso}.png";
                 }
