@@ -59,6 +59,11 @@ class Language
                 'parent' => 'Gruppo',
                 'state' => 'Stato',
                 'flag' => 'Bandiera',
+                'actions' => 'Azioni',
+
+                // PULSANTI
+                'edit' => 'Modifica',
+                'delete' => 'Elimina',
 
                 /* ERRORI */
                 // ERRORI AUTENTICAZIONE E PROFILO
@@ -106,13 +111,18 @@ class Language
                 'not registered?' => 'Not registered?',
                 'do you already have an account?' => 'Do you already have an account?',
 
-                /* STATI */
+                /* TABELLE */
                 // CAMPI
                 'name' => 'Name',
                 'description' => 'Description',
                 'parent' => 'Group',
                 'state' => 'State',
                 'flag' => 'Flag',
+                'actions' => 'Actions',
+
+                // PULSANTI
+                'edit' => 'Edit',
+                'delete' => 'Delete',
 
                 /* ERRORI */
                 // ERRORI AUTENTICAZIONE E PROFILO                

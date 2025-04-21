@@ -18,3 +18,11 @@ a:hover, a:focus {
     max-height: 100px;
     object-fit: contain;
 }
+a:hover:has(.myteam), a:focus:has(.myteam) {
+    text-decoration: none;
+}
+
+.myteam {
+    border: 5px solid;
+    border-radius: 20px;
+}

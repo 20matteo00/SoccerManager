@@ -72,6 +72,9 @@ $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY
                 <th class="text-center align-middle"><?= $lang->getstring('description') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('state') ?></th>
                 <th class="text-center align-middle"><?= $lang->getstring('competitions') ?></th> <!-- Nuova colonna per le competizioni -->
+                <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 0): ?>
+                    <th class="text-center align-middle"><?= $lang->getstring('actions') ?></th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -89,12 +92,23 @@ $stati = $db->select("SELECT stato FROM squadre WHERE stato IS NOT NULL GROUP BY
                 }
                 // Rimuove l'ultima virgola e spazio
                 $competizioni_lista = rtrim($competizioni_lista, ', ');
+                $s = new Squadre($squadra['nome'], $db);
+
                 ?>
                 <tr>
-                    <td class="text-center align-middle"><a href="index.php?page=details&team=<?= $squadra['nome'] ?>"><?= htmlspecialchars($squadra['nome']) ?></a></td>
+                    <td class="text-center align-middle">
+                        <a href="index.php?page=details&team=<?= $squadra['nome'] ?>"><?php $s->creasquadra(); ?>
+                        </a>
+                    </td>
                     <td class="text-center align-middle"><?= htmlspecialchars($squadra['descrizione'] ?? '-') ?></td>
                     <td class="text-center align-middle"><a href="index.php?page=details&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
                     <td class="text-center align-middle"><?= $competizioni_lista ?></td> <!-- Lista delle competizioni -->
+                    <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 0): ?>
+                        <td class="text-center align-middle">
+                            <a href="index.php?page=utility&action=edit&team=<?= $squadra['nome'] ?>" class="btn btn-warning btn-sm"><?= $lang->getstring('edit') ?></a>
+                            <a href="index.php?page=utility&action=delete&team=<?= $squadra['nome'] ?>" class="btn btn-danger btn-sm"><?= $lang->getstring('delete') ?></a>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
         </tbody>

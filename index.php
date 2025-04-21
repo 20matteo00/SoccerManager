@@ -6,7 +6,7 @@ require_once("helper/db.php");
 require_once("helper/table.php");
 require_once("helper/language.php");
 require_once("helper/pagination.php");
-
+require_once("helper/squadre.php");
 
 $db = new Db(); // Inizializza la connessione al database
 $table = new Table($db); // Inizializza la classe table con la connessione al database
