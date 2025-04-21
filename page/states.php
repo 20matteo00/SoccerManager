@@ -24,13 +24,6 @@ $stati = $db->select(
 // 6) Genera i link di paginazione
 $baseUrl = "index.php?page=states";
 $paginationLinks = $pagination->generatePagination($baseUrl);
-
-// 7) Se hai selezionato uno stato da dettagliare
-if (isset($_GET['state'])) {
-    echo '<div class="alert alert-info">Dettaglio: '
-        . htmlspecialchars($_GET['state'])
-        . '</div>';
-}
 ?>
 
 <div class="container py-5">
@@ -58,14 +51,14 @@ if (isset($_GET['state'])) {
                 <tr>
                     <td class="text-center align-middle"><img src="<?= $url ?>" alt="Bandiera <?= $stato['nome'] ?>" class="img-fluid myimg"></td>
                     <td class="text-center align-middle">
-                        <a href="index.php?page=states&state=<?= urlencode($stato['nome']) ?>">
+                        <a href="index.php?page=details&state=<?= urlencode($stato['nome']) ?>">
                             <?= htmlspecialchars($stato['nome']) ?>
                         </a>
                     </td>
                     <td class="text-center align-middle"><?= htmlspecialchars($stato['descrizione'] ?? '-') ?></td>
                     <td class="text-center align-middle">
                         <?php if (!empty($stato['parent_id'])): ?>
-                            <a href="index.php?page=states&state=<?= urlencode($stato['parent_id']) ?>">
+                            <a href="index.php?page=details&state=<?= urlencode($stato['parent_id']) ?>">
                                 <?= htmlspecialchars($stato['parent_id']) ?>
                             </a>
                         <?php endif; ?>

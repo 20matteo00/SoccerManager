@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user'] = $utente[0];
         $_SESSION['username'] = $utente[0]['username'];
         $_SESSION['email'] = $utente[0]['email'];
+        $_SESSION['level'] = json_decode($utente[0]['params'])->level;
         header("Location: index.php");
         exit;
     } else {

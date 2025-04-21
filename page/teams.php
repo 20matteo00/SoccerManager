@@ -56,15 +56,15 @@ if (isset($_GET['team'])) {
 
                 $competizioni_lista = '';
                 foreach ($competizioni as $competizione) {
-                    $competizioni_lista .= '<a href="index.php?page=competitions&competition=' . urlencode($competizione['competizione_nome']) . '">' . htmlspecialchars($competizione['competizione_nome']) . '</a>, ';
+                    $competizioni_lista .= '<a href="index.php?page=details&competition=' . urlencode($competizione['competizione_nome']) . '">' . htmlspecialchars($competizione['competizione_nome']) . '</a>, ';
                 }
                 // Rimuove l'ultima virgola e spazio
                 $competizioni_lista = rtrim($competizioni_lista, ', ');
                 ?>
                 <tr>
-                    <td class="text-center align-middle"><a href="index.php?page=teams&team=<?= $squadra['nome'] ?>"><?= htmlspecialchars($squadra['nome']) ?></a></td>
+                    <td class="text-center align-middle"><a href="index.php?page=details&team=<?= $squadra['nome'] ?>"><?= htmlspecialchars($squadra['nome']) ?></a></td>
                     <td class="text-center align-middle"><?= htmlspecialchars($squadra['descrizione'] ?? '-') ?></td>
-                    <td class="text-center align-middle"><a href="index.php?page=states&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
+                    <td class="text-center align-middle"><a href="index.php?page=details&state=<?= $squadra['stato'] ?>"><?= htmlspecialchars($squadra['stato']) ?></a></td>
                     <td class="text-center align-middle"><?= $competizioni_lista ?></td> <!-- Lista delle competizioni -->
                 </tr>
             <?php endforeach; ?>
