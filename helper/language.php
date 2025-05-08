@@ -3,10 +3,28 @@
 class Language
 {
     private $lang = 'it'; // Lingua predefinita
+    private $translations = [];
 
     public function __construct($lang = 'it')
     {
         $this->lang = $lang;
+        $this->loadTranslations();
+    }
+
+    // Carica il file delle traduzioni per la lingua selezionata
+    private function loadTranslations()
+    {
+        // Torniamo indietro di una cartella
+        $parentDir = dirname(realpath(__DIR__));
+        // Aggiungiamo il percorso per il file JSON di traduzione
+        $langFile = $parentDir . '/language/' . $this->lang . '.json';
+
+        if (file_exists($langFile)) {
+            $this->translations = json_decode(file_get_contents($langFile), true);
+        } else {
+            // Se il file non esiste, fallback alla lingua predefinita
+            $this->translations = [];
+        }
     }
 
     public function getLang()
@@ -16,135 +34,14 @@ class Language
 
     public function getstring($key)
     {
-        $translations = [
-            'it' => [
-                /* MENU */
-                //MENU PRINCIPALE
-                'states' => 'Stati',
-                'competitions' => 'Competizioni',
-                'teams' => 'Squadre',
+        // Restituisce la traduzione o la chiave stessa se non trovata
+        return $this->translations[$key] ?? $key;
+    }
 
-                //MENU NON LOGGATO
-                'login' => 'Accedi',
-                'register' => 'Registrati',
-
-                //MENU LOGGATO
-                'welcome' => 'Benvenuto',
-                'logout' => 'Esci',
-
-                /* AUTENTICAZIONE E PROFILO */
-                // CAMPI
-                'username' => 'Nome Utente',
-                'email' => 'Email',
-                'email or username' => 'Email o Nome Utente',
-                'password' => 'Password',
-                'confirm password' => 'Conferma password',
-                'current password' => 'Password attuale',
-                'new password' => 'Nuova password',
-                'confirm new password' => 'Conferma nuova password',
-
-                // PULSANTI
-                'save' => 'Salva',
-
-                // FRASI
-                'profile' => 'Profilo',
-                'change password' => 'Cambia password',
-                'not registered?' => 'Non sei registrato?',
-                'do you already have an account?' => 'Hai già un account?',
-
-                /* STATI */
-                // CAMPI
-                'name' => 'Nome',
-                'description' => 'Descrizione',
-                'parent' => 'Gruppo',
-                'state' => 'Stato',
-                'flag' => 'Bandiera',
-                'params' => 'Parametri',
-                'actions' => 'Azioni',
-                'value' => 'Valore',
-                'attack' => 'Attacco',
-                'defense' => 'Difesa',
-
-                // PULSANTI
-                'edit' => 'Modifica',
-                'delete' => 'Elimina',
-
-                /* ERRORI */
-                // ERRORI AUTENTICAZIONE E PROFILO
-                'incorrect email or password.' => 'Email o password errati.',
-                'username or email already in use!' => 'Nome utente o email già in uso!',
-                'username already in use!' => 'Nome utente già in uso!',
-                'username not found!' => 'Nome utente non trovato!',
-                'incorrect current password!' => 'Password attuale errata!',
-                'passwords do not match!' => 'Le password non corrispondono!',
-                'error while updating!' => 'Errore durante l\'aggiornamento!',
-                // Aggiungi altre traduzioni qui
-            ],
-            'en' => [
-                /* MENU */
-                //MENU PRINCIPALE
-                'states' => 'States',
-                'competitions' => 'Competitions',
-                'teams' => 'Teams',
-
-                //MENU NON LOGGATO
-                'login' => 'Login',
-                'register' => 'Register',
-
-                //MENU LOGGATO
-                'welcome' => 'Welcome',
-                'logout' => 'Logout',
-
-                /* AUTENTICAZIONE E PROFILO */
-                // CAMPI
-                'username' => 'Username',
-                'email' => 'Email',
-                'email or username' => 'Email or Username',
-                'password' => 'Password',
-                'confirm password' => 'Confirm Password',
-                'current password' => 'Current Password',
-                'new password' => 'New Password',
-                'confirm new password' => 'Confirm New Password',
-
-                // PULSANTI
-                'save' => 'Save',
-
-                // FRASI
-                'profile' => 'Profile',
-                'change password' => 'Change Password',
-                'not registered?' => 'Not registered?',
-                'do you already have an account?' => 'Do you already have an account?',
-
-                /* TABELLE */
-                // CAMPI
-                'name' => 'Name',
-                'description' => 'Description',
-                'parent' => 'Group',
-                'state' => 'State',
-                'flag' => 'Flag',
-                'params' => 'Params',
-                'actions' => 'Actions',
-                'value' => 'Value',
-                'attack' => 'Attack',
-                'defense' => 'Defense',
-
-                // PULSANTI
-                'edit' => 'Edit',
-                'delete' => 'Delete',
-
-                /* ERRORI */
-                // ERRORI AUTENTICAZIONE E PROFILO                
-                'incorrect email or password.' => 'Incorrect email or password.',
-                'username or email already in use!' => 'Username or email already in use!',
-                'username already in use!' => 'Username already in use!',
-                'username not found!' => 'Username not found!',
-                'incorrect current password!' => 'Incorrect current password!',
-                'passwords do not match!' => 'Passwords do not match!',
-                'error while updating!' => 'Error while updating!',
-                // Aggiungi altre traduzioni qui
-            ]
-        ];
-
-        return $translations[$this->lang][$key] ?? $key; // Restituisce la traduzione o la chiave se non trovata
+    // Imposta una nuova lingua e ricarica le traduzioni
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+        $this->loadTranslations();
     }
 }
